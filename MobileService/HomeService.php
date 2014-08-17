@@ -3,7 +3,7 @@ include_once (dirname ( __FILE__ ) . '/BaseService.php');
 class HomeService extends BaseService {
 	public function on_get() {
 	}
-	public function on_post($param = null) {
+	public function on_post($param = null) { 
 	}
 	public function getTop1() {
 		$result = new StdClass ();
