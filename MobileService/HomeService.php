@@ -3,14 +3,7 @@ include_once (dirname ( __FILE__ ) . '/BaseService.php');
 class HomeService extends BaseService {
 	public function on_get() {
 	}
-	public function on_post($param = null) { 
-		
-		
-		
-		
-		
-		
-		///rtrtrtrt
+	public function on_post($param = null) {
 	}
 	public function getTop1() {
 		$result = new StdClass ();
@@ -20,10 +13,10 @@ class HomeService extends BaseService {
 		$result->img = 'Video/Img/1.jpg';
 		$result->video = 'Video/Img/1.jpg';
 		$result->__status = 1;
-		$result->__statusMsg = '检索到1条数据';
+		$result->__stateInfo = '检索到1条数据';
+		$result->__result = 1;
 		return $result;
 	}
-	
 	public function getTop10() {
 		$result = new StdClass ();
 		$videos = array ();
@@ -38,12 +31,10 @@ class HomeService extends BaseService {
 		}
 		$result->item = $videos;
 		$result->__status = 1;
-		$result->__statusMsg = '检索到10条数据';
+		$result->__stateInfo = '检索到10条数据';
+		$result->__result = 1;
 		return $result;
 	}
-    
-
-
 }
 $bll = new HomeService ();
 $bll->on_do ();
