@@ -12,7 +12,7 @@ class HomeService extends BaseService {
 		$result->title = '张林老师火爆视频';
 		$result->idteacher = '100';
 		$result->teacher = '张老师';
-		$result->desc = '张老师大师级的视频....';
+		$result->desc = '张老师大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频....';
 		$result->paycount = 10000;
 		$result->img = 'Video/Img/1.jpg';
 		$result->url = 'Video/Img/1.jpg';
@@ -34,7 +34,7 @@ class HomeService extends BaseService {
 			$item ['title'] = '张林老师火爆视频' . $i;
 			$item ['idteacher'] = '100';
 			$item ['teacher'] = '张老师' . $i;
-			$item ['desc'] = '张老师' . $i . '大师级的视频....';
+			$item ['desc'] = '张老师' . $i . '------++大师级的视频,大师级的视频,大师级的视频,大师级的视频,,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频....';
 			$item ['paycount'] = $i+10;
 			$item ['img'] = 'Video/Img/1.jpg';
 			$item ['url'] = 'Video/Img/1.jpg';
