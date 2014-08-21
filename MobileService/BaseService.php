@@ -46,7 +46,7 @@ abstract class BaseService {
 				}
 				if (isset ( $request_func ) && $request_func !== null && $request_func !== '') {
 					$result = $this->{$request_func} ( $post_param );
-					echo $request_func;
+					//echo $result;
 				}
 				// $result = $this->on_post ( $post_param );
 				break;
