@@ -5,7 +5,7 @@ class HomeService extends BaseService {
 	}
 	public function on_post($param = null) {
 	}
-	public function getVideo() {
+	public function getVideo() {    
 		$result = new StdClass ();
 		$videos = array ();
 		for($i = 0; $i < 10; $i ++) {
