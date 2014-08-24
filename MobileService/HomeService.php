@@ -19,6 +19,7 @@ class HomeService extends BaseService {
 			$item ['teacher'] = '张老师' . $i;
 			$item ['desc'] = '张老师' . $i . '大师级的视频,大师级的视频,大师级的视频,大师级的视频,,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频....';
 			$item ['paycount'] = $i + 10;
+			$item ['paytime'] = '00:'.$i.'0:00';
 			$item ['img'] = '1.jpg';
 			$item ['url'] = 'Video/Img/1.jpg';
 			$item ['createtime'] = date ( "Y-m-d H:i:s" );
@@ -36,6 +37,7 @@ class HomeService extends BaseService {
 		$top->teacher = '张老师';
 		$top->desc = '张老师大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频....';
 		$top->paycount = 10000;
+		$top->paytime = '00:50:00';
 		$top->img = '1.jpg';
 		$top->url = 'Video/Img/1.jpg';
 		$top->createtime = date ( "Y-m-d H:i:s" );
