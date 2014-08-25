@@ -12,7 +12,7 @@ class ImgService extends BaseService {
 		$result->__stateInfo = '检索到0条数据';
 		$result->__result = 0;
 		if (isset ( $imgObj ) && $imgObj !== null && isset ( $imgObj->img ) && $imgObj->img !== null) {
-			$img_dir = dirname ( dirname ( __FILE__ ) ) . '/Video/Img/';
+			$img_dir = dirname ( dirname ( __FILE__ ) ) . '/MResource/Img/';
 			$s = strpos ( $imgObj->img, '.' );
 			if ($s && $s > 0) {
 				$img_s_suffix = substr ( $imgObj->img, $s );
