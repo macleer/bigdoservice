@@ -5,7 +5,7 @@ class ImgService extends BaseService {
 	}
 	public function on_post($param = null) {
 	}
-	public function getImg($imgObj = null) {
+	public function getImg($imgObj = null) { 
 		$result = new StdClass ();
 		$result->data = '';
 		$result->__status = 0;
