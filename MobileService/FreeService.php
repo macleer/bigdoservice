@@ -17,11 +17,13 @@ class FreeService extends BaseService {
 			$item ['title'] = '[体验]张林老师火爆视频' . $i;
 			$item ['idteacher'] = '100';
 			$item ['teacher'] = '张老师' . $i;
+			$item ['taptitudes'] = '特牛B的老师，获得多项国际大奖.';
+			$item ['timg'] = '1.jpg';
 			$item ['desc'] = '张老师' . $i . '大师级的视频,大师级的视频,大师级的视频,大师级的视频,,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频....';
 			$item ['paycount'] = $i + 10;
 			$item ['paytime'] = '00:' . $i . '0:00';
 			$item ['img'] = '1.jpg';
-			$item ['video'] = 'Video/1.mp4';
+			$item ['video'] = '1.mp4';
 			$item ['createtime'] = date ( "Y-m-d H:i:s" );
 			$item ['updatetime'] = date ( "Y-m-d H:i:s" );
 			array_push ( $videos, $item );
