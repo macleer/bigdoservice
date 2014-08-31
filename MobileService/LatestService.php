@@ -6,7 +6,7 @@ class LatestService extends BaseService {
 	public function on_post($param = null) {
 	}
 	public function getVideo() {
-		// sleep(1*10);
+		// sleep(1*10);----
 		$result = new StdClass ();
 		$videos = array ();
 		for($i = 0; $i < 50; $i ++) {
