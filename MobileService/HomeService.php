@@ -28,7 +28,7 @@ class HomeService extends BaseService {
 			$item ['updatetime'] = date ( "Y-m-d H:i:s" );
 			array_push ( $videos, $item );
 		}
-		$result->top10 = $videos;
+		$result->item = $videos;
 		
 		$top = new StdClass ();
 		$top->idvideo = '12345';
