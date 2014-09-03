@@ -15,11 +15,11 @@ class HomeService extends BaseService {
 			$op = $data->__op__;
 		}
 		$si = 0;
-		if ($op == 'latest') {
+		if ($op === 'latest') {
 			$si = $c + 1;
 			$ei = $si + 20;
 		} else {
-			$ei = - $c - 1 - 20;
+			$si = $c + 1;
 			$ei = $si + 20;
 		}
 		
@@ -30,7 +30,7 @@ class HomeService extends BaseService {
 			$item ['idvideo'] = ($i) . '0';
 			$item ['idtype'] = ($i) . '0';
 			$item ['score'] = 10 * ($i);
-			$item ['title'] = '[' . $c . ']张林老师火爆视频' . $i;
+			$item ['title'] = $op . '[' . $c . ']张林老师火爆视频' . $i;
 			$item ['idteacher'] = '100';
 			$item ['teacher'] = '张老师' . $i;
 			$item ['taptitudes'] = '特牛B的老师，获得多项国际大奖.';
