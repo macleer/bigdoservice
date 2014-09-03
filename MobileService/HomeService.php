@@ -6,6 +6,7 @@ class HomeService extends BaseService {
 	public function on_post($param = null) {
 	}
 	public function getVideo($data) {
+		$max_count = 500;
 		// sleep(1*10);
 		$c = 0;
 		$op = '';
@@ -13,27 +14,29 @@ class HomeService extends BaseService {
 			$c = $data->__c__;
 			$op = $data->__op__;
 		}
-		$oc = $c;
+		$si = 0;
 		if ($op == 'latest') {
-			$c -= 20;
+			$si = $c + 1;
+			$ei = $si + 20;
 		} else {
-			$c ++;
+			$ei = - $c - 1 - 20;
+			$ei = $si + 20;
 		}
+		
 		$result = new StdClass ();
 		$videos = array ();
-		$ec = $c + 20;
-		for($i = $c; $i < $ec; $i ++) {
+		for($i = $si; $i < $ei; $i ++) {
 			$item = array ();
-			$item ['idvideo'] = ($i + 1) . '0';
-			$item ['idtype'] = ($i + 1) . '0';
-			$item ['score'] = 10 * ($i + 1);
-			$item ['title'] = '[' . $oc . ']张林老师火爆视频' . $i;
+			$item ['idvideo'] = ($i) . '0';
+			$item ['idtype'] = ($i) . '0';
+			$item ['score'] = 10 * ($i);
+			$item ['title'] = '[' . $c . ']张林老师火爆视频' . $i;
 			$item ['idteacher'] = '100';
 			$item ['teacher'] = '张老师' . $i;
 			$item ['taptitudes'] = '特牛B的老师，获得多项国际大奖.';
 			$item ['timg'] = '1.jpg';
 			$item ['desc'] = '张老师' . $i . '大师级的视频,大师级的视频,大师级的视频,大师级的视频,,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频....';
-			$item ['paycount'] = $i + 10;
+			$item ['paycount'] = $i;
 			$item ['paytime'] = '00:' . $i . '0:00';
 			$item ['img'] = '1.jpg';
 			$item ['video'] = '1.mp4';
