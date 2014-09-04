@@ -5,20 +5,21 @@ class ImgService extends BaseService {
 	}
 	public function on_post($param = null) {
 	}
-	public function getImg($imgObj = null) { 
+	public function getImg($imgObj) {
 		$result = new StdClass ();
 		$result->data = '';
 		$result->__status = 0;
 		$result->__stateInfo = '检索到0条数据';
 		$result->__result = 0;
 		if (isset ( $imgObj ) && $imgObj !== null && isset ( $imgObj->img ) && $imgObj->img !== null) {
-			$img_dir = dirname ( dirname ( __FILE__ ) ) . '/VideoImg/';
+			$img_dir = dirname ( dirname ( __FILE__ ) ) . '/';
 			$s = strpos ( $imgObj->img, '.' );
 			if ($s && $s > 0) {
 				$img_s_suffix = substr ( $imgObj->img, $s );
 				$img_s_prefix = substr ( $imgObj->img, 0, $s );
 				$img_path = $img_dir . $imgObj->img;
 				$img_path_l = $img_path;
+				
 				$img_path_s = $img_dir . $img_s_prefix . '_s' . $img_s_suffix;
 				$zip_result = $this->resizeImage ( $img_path_l, 120, 80, $img_path_s );
 				

@@ -1,5 +1,6 @@
 <?php
-define ( '_db_server_', '192.168.1.125:3306' );
+define ( '_db_name_', 'dzw_data' );
+define ( '_db_server_', 'localhost' );
 define ( '_db_user_', 'root' );
 define ( '_db_pwd_', '' );
 /**
@@ -14,8 +15,8 @@ abstract class BaseService {
 	 * 处理请求
 	 */
 	public function on_do() {
-		//header ( 'Accept:application/json' );
-		//header ( 'Content-Type:application/json' );
+		header ( 'Accept:application/json' );
+		header ( 'Content-Type:application/json' );
 		header ( 'Accept-Charset:UTF-8' );
 		$method = $_SERVER ['REQUEST_METHOD'];
 		$request = explode ( '/', substr ( @$_SERVER ['PATH_INFO'], 1 ) );
@@ -68,6 +69,7 @@ abstract class BaseService {
 	 */
 	public function _sql_connect() {
 		$this->con = mysql_connect ( _db_server_, _db_user_, _db_pwd_ );
+		mysql_query ( "SET NAMES 'UTF8'", $this->con );
 	}
 	/**
 	 * 关闭数据库连接
@@ -81,13 +83,14 @@ abstract class BaseService {
 	/**
 	 * 查询数据库连接
 	 */
-	public function _sql_select($table, $sql) {
+	public function _sql_select($sql) {
 		if (! $this->con) {
 			$this->_sql_connect ();
 		}
 		$result = null;
 		if ($this->con !== null) {
-			mysql_select_db ( $table, $this->con );
+			
+			mysql_select_db ( _db_name_, $this->con );
 			$result = mysql_query ( $sql );
 		} else {
 			$result = false;
