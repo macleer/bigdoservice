@@ -6,46 +6,41 @@ class HomeService extends BaseService {
 	public function on_post($param = null) {
 	}
 	public function getVideo($data) {
-		$max_count = 500;
-		// sleep(1*10);
-		$c = 0;
+		// sleep(1*10);		 
 		$op = '';
-		if (isset ( $data ) && $data !== null) {
-			$c = $data->__c__;
-			$op = $data->__op__;
-		}
-		$si = 0;
-		if ($op === 'latest') {
-			$si = $c + 1;
-			$ei = $si + 20;
-		} else {
-			$si = $c + 1;
-			$ei = $si + 20;
-		}
-		
+		if (array_key_exists ( '__op__', $_GET )) {
+			$op = $_GET ['__op__'];
+		}		
 		$result = new StdClass ();
 		$videos = array ();
-		for($i = $si; $i < $ei; $i ++) {
-			$item = array ();
-			$item ['idvideo'] = ($i) . '0';
-			$item ['idtype'] = ($i) . '0';
-			$item ['score'] = 10 * ($i);
-			$item ['title'] = $op . '[' . $c . ']张林老师火爆视频' . $i;
-			$item ['idteacher'] = '100';
-			$item ['teacher'] = '张老师' . $i;
-			$item ['taptitudes'] = '特牛B的老师，获得多项国际大奖.';
-			$item ['timg'] = '1.jpg';
-			$item ['desc'] = '张老师' . $i . '大师级的视频,大师级的视频,大师级的视频,大师级的视频,,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频,大师级的视频....';
-			$item ['paycount'] = $i;
-			$item ['paytime'] = '00:' . $i . '0:00';
-			$item ['img'] = '1.jpg';
-			$item ['video'] = '1.mp4';
-			$item ['createtime'] = date ( "Y-m-d H:i:s" );
-			$item ['updatetime'] = date ( "Y-m-d H:i:s" );
-			array_push ( $videos, $item );
+		$sql = 'SELECT v.CS_ID,v.CS_CID,v.CS_Cion,v.CS_Name,v.CS_Content,v.CS_Hits,v.CS_Daoy,v.CS_Pic,v.CS_PlayUrl,v.CS_AddTime,v.CS_PlayTime,v.CS_Yany,t.CS_ID as T_CS_ID,t.CS_Content as T_CS_Content,t.CS_Pic as T_CS_Pic FROM dzw_vod as v join dzw_singer as t on v.cs_yany = t.cs_name order by v.cs_hits desc limit 0,50 ';
+		$sql_result = $this->_sql_select ( 'dzw_vod', $sql );
+		if ($sql_result) {
+			while ( $row = mysql_fetch_array ( $sql_result ) ) {
+				$item = array ();
+				$item ['idvideo'] = $row ['CS_ID'];
+				$item ['idtype'] = $row ['CS_CID'];
+				$item ['score'] = $row ['CS_Cion'];
+				$item ['title'] = $row ['CS_Name'];
+				
+				$item ['idteacher'] = $row ['T_CS_ID'];
+				$item ['teacher'] = $row ['CS_Yany'];
+				$item ['taptitudes'] = $row ['T_CS_Content'];
+				$item ['timg'] = $row ['T_CS_Pic'];
+				
+				$item ['desc'] = $row ['CS_Content'];
+				$item ['paycount'] = $row ['CS_Hits'];
+				$item ['paytime'] = $row ['CS_Daoy'];
+				$item ['img'] = $row ['CS_Pic'];
+				$item ['video'] = $row ['CS_PlayUrl'];
+				$item ['createtime'] = $row ['CS_AddTime'];
+				$item ['updatetime'] = $row ['CS_PlayTimedate'];
+				array_push ( $videos, $item );
+			}
 		}
+		
 		$result->item = $videos;
-		if ($op === 'latest') {
+		if ($op === 'refresh') {
 			$top = new StdClass ();
 			$top->idvideo = '12345';
 			$top->idtype = '12345';
@@ -69,6 +64,7 @@ class HomeService extends BaseService {
 		$result->__status = 1;
 		$result->__stateInfo = '检索到51条数据';
 		$result->__result = 1;
+		$result->__clear = 1;
 		return $result;
 	}
 }

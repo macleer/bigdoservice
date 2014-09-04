@@ -1,10 +1,15 @@
 <?php
+define ( '_db_server_', '192.168.1.125:3306' );
+define ( '_db_user_', 'root' );
+define ( '_db_pwd_', '' );
 /**
- *服务基类,简单封装
- *@author axx
+ * 服务基类,简单封装
  *
+ * @author axx
+ *        
  */
 abstract class BaseService {
+	public $con = null;
 	/**
 	 * 处理请求
 	 */
@@ -58,7 +63,42 @@ abstract class BaseService {
 			echo $result;
 		}
 	}
+	/**
+	 * 数据库连接
+	 */
+	public function _sql_connect() {
+		$this->con = mysql_connect ( _db_server_, _db_user_, _db_pwd_ );
+	}
+	/**
+	 * 关闭数据库连接
+	 */
+	public function _sql_close() {
+		if ($this->con) {
+			mysql_close ( $this->con );
+			$this->con = null;
+		}
+	}
+	/**
+	 * 查询数据库连接
+	 */
+	public function _sql_select($table, $sql) {
+		if (! $this->con) {
+			$this->_sql_connect ();
+		}
+		$result = null;
+		if ($this->con !== null) {
+			mysql_select_db ( $table, $this->con );
+			$result = mysql_query ( $sql );
+		} else {
+			$result = false;
+		}
+		return $result;
+	}
+	public function __destruct() {
+		$this->_sql_close ();
+	}
 	public abstract function on_get();
 	public abstract function on_post($param = null);
 }
+
 ?>
