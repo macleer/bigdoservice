@@ -5,12 +5,12 @@ class HomeService extends BaseService {
 	}
 	public function on_post($param = null) {
 	}
-	public function getVideo($data) {
+	public function getVideo() {
 		// sleep(1*10);		 
 		$op = '';
-		if (array_key_exists ( '__op__', $_GET )) {
-			$op = $_GET ['__op__'];
-		}		
+		//if (array_key_exists ( '__op__', $_GET )) {
+			//$op = $_GET ['__op__'];
+		//}		
 		$result = new StdClass ();
 		$videos = array ();
 		$sql = 'SELECT v.CS_ID,v.CS_CID,v.CS_Cion,v.CS_Name,v.CS_Content,v.CS_Hits,v.CS_Daoy,v.CS_Pic,v.CS_PlayUrl,v.CS_AddTime,v.CS_PlayTime,v.CS_Yany,t.CS_ID as T_CS_ID,t.CS_Content as T_CS_Content,t.CS_Pic as T_CS_Pic FROM dzw_vod as v join dzw_singer as t on v.cs_yany = t.cs_name order by v.cs_hits desc limit 0,50 ';

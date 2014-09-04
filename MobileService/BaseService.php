@@ -14,8 +14,8 @@ abstract class BaseService {
 	 * 处理请求
 	 */
 	public function on_do() {
-		header ( 'Accept:application/json' );
-		header ( 'Content-Type:application/json' );
+		//header ( 'Accept:application/json' );
+		//header ( 'Content-Type:application/json' );
 		header ( 'Accept-Charset:UTF-8' );
 		$method = $_SERVER ['REQUEST_METHOD'];
 		$request = explode ( '/', substr ( @$_SERVER ['PATH_INFO'], 1 ) );
