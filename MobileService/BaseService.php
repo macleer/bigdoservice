@@ -1,6 +1,6 @@
 <?php
 define ( '_db_name_', 'dzw_data' );
-define ( '_db_server_', 'localhost' );
+define ( '_db_server_', '192.168.1.125' );
 define ( '_db_user_', 'root' );
 define ( '_db_pwd_', '' );
 /**
