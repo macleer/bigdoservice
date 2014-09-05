@@ -37,6 +37,8 @@ class HomeService extends BaseService {
 		$result->__stateInfo = '检索到51条数据';
 		$result->__result = 1;
 		$result->__clear = 1;
+
+		$this->_sql_close ();
 		return $result;
 	}
 }

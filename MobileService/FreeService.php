@@ -55,6 +55,7 @@ class FreeService extends BaseService {
 		$result->__status = 1;
 		$result->__stateInfo = '检索到' . $dc . '条数据';
 		$result->__result = 1;
+		$this->_sql_close ();
 		return $result;
 	}
 }
