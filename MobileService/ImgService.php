@@ -21,7 +21,7 @@ class ImgService extends BaseService {
 				$img_path_l = $img_path;
 				
 				$img_path_s = $img_dir . $img_s_prefix . '_s' . $img_s_suffix;
-				$zip_result = $this->resizeImage ( $img_path_l, 120, 80, $img_path_s );
+				$zip_result = $this->resizeImage ( $img_path_l, 100, 60, $img_path_s );
 				
 				$data = file_get_contents ( $img_path_s );
 				if ($data !== null && $data !== '') {
@@ -97,11 +97,11 @@ class ImgService extends BaseService {
 					$newim = imagecreate ( $newwidth, $newheight );
 					imagecopyresized ( $newim, $im, 0, 0, 0, 0, $newwidth, $newheight, $current_width, $current_height );
 				}
-				imagejpeg ( $newim, $savename, 60 );
+				imagejpeg ( $newim, $savename, 40 );
 				imagedestroy ( $newim );
 				return 1;
 			} else {
-				imagejpeg ( $im, $savename, 60 );
+				imagejpeg ( $im, $savename, 40 );
 				return 2;
 			}
 		}

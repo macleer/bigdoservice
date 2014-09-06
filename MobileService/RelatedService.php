@@ -21,9 +21,9 @@ class RelatedService extends BaseService {
 			$sql .= 'FROM dzw_vod as v join dzw_singer as t on v.cs_yany = t.cs_name ';
 			
 			if ($op === 'refresh') {
-				$sql .= ' where   v.CS_ID >' . $_idvideo . ' and v.CS_CID like \'%' . $idrtype . '\' order by v.CS_ID asc limit 0,20 ';
+				$sql .= ' where   v.CS_ID >' . $_idvideo . ' and v.CS_CID = ' . $idrtype . ' order by v.CS_ID asc limit 0,20 ';
 			} else {
-				$sql .= ' where v.CS_ID <' . $idvideo_ . ' and v.CS_CID like \'%' . $idrtype . '\'  order by v.CS_ID desc limit 0,20 ';
+				$sql .= ' where v.CS_ID <' . $idvideo_ . ' and v.CS_CID = ' . $idrtype . '  order by v.CS_ID desc limit 0,20 ';
 			}
 			$sql_result = $this->_sql_select ( $sql );
 			
@@ -31,7 +31,9 @@ class RelatedService extends BaseService {
 				while ( $row = mysql_fetch_array ( $sql_result ) ) {
 					$item = array ();
 					$item ['idvideo'] = $row ['CS_ID'] - 0;
-					$item ['idtype'] = $row ['CS_CID'];
+					$item ['idtype'] = $row ['CS_CID'] - 0;
+
+					$item ['idptype'] = 0;
 					$item ['score'] = $row ['CS_Cion'] - 0;
 					$item ['title'] = $row ['CS_Name'];
 					

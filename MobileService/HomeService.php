@@ -19,7 +19,8 @@ class HomeService extends BaseService {
 				$dc ++;
 				$item = array ();
 				$item ['idvideo'] = $row ['CS_ID'] - 0;
-				$item ['idtype'] = $row ['CS_CID'];
+				$item ['idtype'] = $row ['CS_CID'] - 0;
+				$item ['idptype'] = 0;
 				$item ['score'] = $row ['CS_Cion'] - 0;
 				$item ['title'] = $row ['CS_Name'];
 				
