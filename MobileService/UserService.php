@@ -174,6 +174,35 @@ class UserService extends BaseService {
 		$this->_sql_close ();
 		return $result;
 	}
+	/**
+	 * 修改密码
+	 *
+	 * @param unknown $data        	
+	 * @return StdClass
+	 */
+	public function changePwd($data) {
+		$result = new StdClass ();
+		$isOk = false;
+		if (isset ( $data ) && $data !== null && isset ( $data->iduser ) && $data->iduser !== null && $data->iduser !== '' && isset ( $data->pwd ) && $data->pwd !== null && $data->pwd !== '' && isset ( $data->newpwd ) && $data->newpwd !== null && $data->newpwd !== '') {
+			$data->pwd = md5 ( $data->pwd );
+			$data->newpwd = md5 ( $data->newpwd );
+			$sql = 'update  dzw_user set CS_Pass = \'' . $this->_sql_param_filter ( $data->newpwd ) . '\'';
+			$sql .= '  where CS_ID = ' . $this->_sql_param_filter ( $data->iduser ) . ' and CS_Pass = \'' . $this->_sql_param_filter ( $data->newpwd ) . '\'';
+			
+			$sql_result = $this->_sql_select ( $sql );
+			if ($sql_result && mysql_affected_rows () > 0) {
+				$isOk = true;
+			} else {
+				$isOk = false;
+			}
+		}
+		$c = $isOk ? 1 : 0;
+		$result->__status = $c;
+		$result->__stateInfo = $c ? '修改成功' : '修改失败';
+		$result->__result = $c;
+		$this->_sql_close ();
+		return $result;
+	}
 }
 
 $bll = new UserService ();
