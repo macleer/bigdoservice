@@ -97,6 +97,16 @@ abstract class BaseService {
 		}
 		return $result;
 	}
+	
+	/**
+	 * sql参数过滤-防止sql注入
+	 *
+	 * @param unknown $param        	
+	 * @return string
+	 */
+	public function _sql_param_filter($param) {
+		return mysql_real_escape_string ( $param );
+	}
 	public function __destruct() {
 		$this->_sql_close ();
 	}
